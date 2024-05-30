@@ -17,7 +17,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/FitX')
 
 async function startServer() {
 
-    const server = new ApolloServer({ typeDefs, resolvers,resolversWorkout });
+    const server = new ApolloServer({ typeDefs, resolvers });
     await server.start()
     server.applyMiddleware({ app });
 
