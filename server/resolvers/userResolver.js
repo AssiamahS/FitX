@@ -45,9 +45,22 @@ const resolvers = {
 
 
         async createWorkout(_, args) {
-            console.log(args)
-            const createdWorkout = await Workout.create(args)
-            return createdWorkout
+            try {
+                console.log(args)
+                const user = await User.findById(args.user_id)
+                const createdWorkout = await Workout.create(args)
+                console.log("Before Update",createdWorkout,'the _id',createdWorkout.id)
+                console.log("Before Update",user)
+                user.workouts.push(createdWorkout.id)
+                console.log("after update",user)
+
+                user.save()
+                return createdWorkout
+            } catch (error) {
+                console.log(error)
+                return error
+            }
+
         }
     }
 };
