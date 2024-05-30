@@ -9,12 +9,15 @@ const typeDefs = gql`
     }
 
     type Query {
-        getOneUser:User
+        getOneUser(_id:ID):User
         getAllUsers:[User]
+        
     }
 
     type Mutation{
         createUser(username:String!,email:String!,password:String!) : User
+        removeOneUser(_id:ID):User
+        updateOneUser(_id:ID,username:String,email:String,password:String!):User
     }
     type Workout {
         WorkoutName: String
@@ -30,6 +33,7 @@ const typeDefs = gql`
 
     type Mutation{
         createWorkout(WorkoutName:String!,ReminderTime:String!,DOW:String!,user_id:ID! ) : Workout
+        
     }
 `;
 
