@@ -12,9 +12,9 @@ const { model, Schema } = require('mongoose')
 
 // const User = model('User', userSchema)
 // module.exports = User
-const { model, Schema } = require('mongoose')
+
 // const {workoutSchema} = require ('./Workout')
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: {
       type: String,
       required: true,

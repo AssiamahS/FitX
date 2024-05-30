@@ -7,12 +7,12 @@ const { model, Schema } = require('mongoose')
 //     "user_id":Schema.Types.ObjectId
 // })
 
-const WorkoutSchema = new mongoose.Schema({
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
+const WorkoutSchema = new Schema({
+    // user: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'User',
+    //   required: true,
+    // },
     exercise: {
       type: String,
       required: true,

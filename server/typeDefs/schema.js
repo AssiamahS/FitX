@@ -5,6 +5,10 @@ const typeDefs = gql`
         username:String
         email:String
         password:String
+        age:String
+        weight:String
+        goal:String
+        frequency:Int
         workouts:[ID]
     }
 
@@ -15,15 +19,17 @@ const typeDefs = gql`
     }
 
     type Mutation{
-        createUser(username:String!,email:String!,password:String!) : User
+        createUser(username:String!,email:String!,password:String!,age:Int, weight:Int,goal:String,frequency:Int) : User
         removeOneUser(_id:ID):User
-        updateOneUser(_id:ID,username:String,email:String,password:String!):User
+        updateOneUser(_id:ID,username:String,email:String,password:String!,weight:Int,goal:String,frequency:Int):User
+        
     }
     type Workout {
-        WorkoutName: String
-        ReminderTime:String
-        DOW:String
-        user_id:ID
+        exercise: String
+        weight:Int
+        reps:Int
+        DayOfWeek:String
+        
     }
 
     type Query {
@@ -32,7 +38,7 @@ const typeDefs = gql`
     }
 
     type Mutation{
-        createWorkout(WorkoutName:String!,ReminderTime:String!,DOW:String!,user_id:ID! ) : Workout
+        createWorkout(exercise:String!,weight:Int!,reps:Int!,DayOfWeek:String,user_id:ID! ) : Workout
         
     }
 `;
