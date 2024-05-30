@@ -9,7 +9,8 @@ const resolvers = {
             return users
         },
         async getOneUser(_,args) {
-            const user = await User.findById(args.post_id)
+            console.log(args)
+            const user = await User.findById(args._id)
             return user
         },
         async getAllWorkouts() {
@@ -27,6 +28,22 @@ const resolvers = {
             const user = await User.create(args)
             return user
         },
+        async removeOneUser(_, args) {
+            console.log(args)
+            const user = await User.deleteOne({_id:args._id})
+            return user
+        },
+        async updateOneUser(_, args) {
+            console.log(args)
+            const user = await User.updateOne({_id:args._id},
+                {username:args?.username,
+                    email:args?.email,
+                    password:args?.password
+                })
+            return user
+        },
+
+
         async createWorkout(_, args) {
             console.log(args)
             const createdWorkout = await Workout.create(args)
