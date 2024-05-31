@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useMutation } from '@apollo/client';
-import { REGISTER_USER } from '../graphql/mutations';
+import { REGISTER_USER } from '../graphql/mutations'; 
+
+
+import { useStore } from '../store';
 
 const SignupForm = () => {
+  const navigate = useNavigate()
+  const { setState } = useStore()
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -12,7 +19,9 @@ const SignupForm = () => {
     goal: '',
     frequency: '',
   });
-  const [signup, { data, loading, error }] = useMutation(REGISTER_USER);
+  const [signup, { data, loading, error }] = useMutation(REGISTER_USER, {
+    variables: formData
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -21,9 +30,14 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await signup({ variables: formData });
-      localStorage.setItem('token', data.signup.token);
+      const { data } = await signup();
+      
+      setState(oldState => ({
+        ...oldState,
+        user: data.authenticate
+      }))
       // Redirect or perform other actions
+      navigate('/workouts')
     } catch (e) {
       console.error(e);
     }

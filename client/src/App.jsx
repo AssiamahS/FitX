@@ -11,16 +11,24 @@ import SignupForm from '../src/components/SignupForm';
 import WorkoutForm from '../src/components/WorkoutForm';
 import WorkoutList from '../src/components/WorkoutList';
 
+import { useStore } from './store';
 
 
 function App() {
+  const {user} = useStore()
   // const { loading, error, data } = useQuery(GET_POST)
   // if (data) {
   //   console.log(data)
   // }
   return (
     <>
-      <h1>Main Base</h1>
+      <header>
+        <h3>FitX</h3>
+        {user && (
+          <p>{user.username}</p>
+        )}
+      </header>
+
 
     {/* <Landing/> */}
       {/* <PostForm /> */}

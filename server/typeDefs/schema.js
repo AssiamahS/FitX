@@ -1,4 +1,5 @@
-const { ApolloServer, gql } = require('apollo-server-express');
+const gql = String.raw;
+
 const typeDefs = gql`
     type User {
         _id:ID
@@ -12,34 +13,26 @@ const typeDefs = gql`
         workouts:[ID]
     }
 
-    type Query {
-        getOneUser(_id:ID):User
-        getAllUsers:[User]
-        
-    }
-
-    type Mutation{
-        createUser(username:String!,email:String!,password:String!,age:Int, weight:Int,goal:String,frequency:Int) : User
-        removeOneUser(_id:ID):User
-        updateOneUser(_id:ID,username:String,email:String,password:String!,weight:Int,goal:String,frequency:Int):User
-        
-    }
     type Workout {
         exercise: String
         weight:Int
         reps:Int
         DayOfWeek:String
-        
+        user: ID
     }
 
     type Query {
         getOneWorkout:Workout
         getAllWorkouts:[Workout]
+        getOneUser(_id:ID):User
+        getAllUsers:[User]
+        authenticate: User
     }
 
     type Mutation{
+        loginUser(email:String,password:String!) : User
+        registerUser(username:String!,email:String!,password:String!,age:Int, weight:Int,goal:String,frequency:Int) : User
         createWorkout(exercise:String!,weight:Int!,reps:Int!,DayOfWeek:String,user_id:ID! ) : Workout
-        
     }
 `;
 
