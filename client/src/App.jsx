@@ -18,13 +18,9 @@ import WorkoutList from '../src/components/WorkoutList';
 import Landing from './pages/Landing';
 import Register from './pages/Register'
 
-<<<<<<< HEAD
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
-=======
-import { useStore } from './store';
->>>>>>> 63059045ddabf5bc9a53c55ce19a69fc8eb193dd
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -33,19 +29,18 @@ const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      // authorization: token ? Bearer ${token} : '',
     },
   };
 });
 
 const client = new ApolloClient({
-  // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
+  // Set up our client to execute the authLink middleware prior to making the request to our GraphQL API
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
 function App() {
-<<<<<<< HEAD
   return (
     <>
       <ApolloProvider client={client}>
@@ -59,33 +54,6 @@ function App() {
           <Route path="/badges" element={<BadgesPage />} />
         </Routes>
       </ApolloProvider>
-=======
-  const {user} = useStore()
-  // const { loading, error, data } = useQuery(GET_POST)
-  // if (data) {
-  //   console.log(data)
-  // }
-  return (
-    <>
-      <header>
-        <h3>FitX</h3>
-        {user && (
-          <p>{user.username}</p>
-        )}
-      </header>
-
-
-    {/* <Landing/> */}
-      {/* <PostForm /> */}
-    
-      <Routes>
-        <Route path="/login" element={<LoginForm/>} />
-        <Route path="/signup" element={<SignupForm/>} />
-        <Route path="/workout-form" element={<WorkoutForm/>} />
-        <Route path="/workouts" element={<WorkoutList/>} />
-      </Routes>
-  
->>>>>>> 63059045ddabf5bc9a53c55ce19a69fc8eb193dd
     </>
   );
 }
