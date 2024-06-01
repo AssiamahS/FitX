@@ -1,11 +1,15 @@
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
+const cookieParser = require('cookie-parser')
+
+require('dotenv').config()
+
+const { ApolloServer } = require('@apollo/server')
+const { expressMiddleware } = require('@apollo/server/express4')
 const PORT = process.env.PORT || 3333
-const resolvers =require('./resolvers/userResolver')
-const resolversWorkout= require('./resolvers/workoutResolver')
+const resolvers = require('./resolvers/resolvers')
 // Construct a schema, using GraphQL schema language
 const typeDefs = require('./typeDefs/schema')
-
+const authMiddleware = require('./utils/auth')
 // Provide resolver functions for your schema fields
 
 const app = express();
@@ -18,9 +22,17 @@ mongoose.connect('mongodb://127.0.0.1:27017/FitX')
 async function startServer() {
 
     const server = new ApolloServer({ typeDefs, resolvers });
-    await server.start()
-    server.applyMiddleware({ app });
 
+    await server.start();
+
+    app.use(
+        '/graphql',
+        express.json(),
+        cookieParser(),
+        expressMiddleware(server, {
+            context: authMiddleware
+        })
+    );
 
     app.listen(PORT, () =>
         console.log(`🚀 Server ready at http://localhost:3333${server.graphqlPath}`)

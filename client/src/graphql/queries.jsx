@@ -42,3 +42,11 @@ export const GET_USER = gql`
     }
   }`
 ;
+
+export const AUTHENTICATE = gql`
+  query Query {
+    authenticate {
+      username
+    }
+  }
+`
