@@ -1,21 +1,13 @@
-/* Global Classes */
-.row {
-  display: flex;
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.justify-between {
-  justify-content: space-between;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
 }
 
-.align-center {
-  align-items: center;
-}
-
-/* Custom Styles */
-header {
-  padding: 0 3%;
-}
-
-.red {
-  background: red;
-}
+/* Add your custom styles here */

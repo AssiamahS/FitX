@@ -13,6 +13,26 @@ const typeDefs = gql`
         workouts:[ID]
     }
 
+<<<<<<< HEAD
+    type Auth {
+        token: ID!
+        user: User
+      }
+
+    type Query {
+        getOneUser(_id:ID):User
+        getAllUsers:[User]
+        
+    }
+
+    type Mutation{
+        createUser(username:String!,email:String!,password:String!,age:Int, weight:Int,goal:String,frequency:Int) : Auth
+        removeOneUser(_id:ID):User
+        updateOneUser(_id:ID,username:String,email:String,password:String!,weight:Int,goal:String,frequency:Int):User
+        
+    }
+=======
+>>>>>>> 63059045ddabf5bc9a53c55ce19a69fc8eb193dd
     type Workout {
         exercise: String
         weight:Int
