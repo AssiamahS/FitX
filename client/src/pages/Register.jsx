@@ -36,7 +36,7 @@ const Register = () => {
                 variables: { ...formState },
             });
 
-            console.log(data)
+            // console.log(data)
 
             Auth.login(data.createUser.token);
         } catch (e) {

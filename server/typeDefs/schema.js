@@ -13,7 +13,6 @@ const typeDefs = gql`
         workouts:[ID]
     }
 
-<<<<<<< HEAD
     type Auth {
         token: ID!
         user: User
@@ -31,8 +30,7 @@ const typeDefs = gql`
         updateOneUser(_id:ID,username:String,email:String,password:String!,weight:Int,goal:String,frequency:Int):User
         
     }
-=======
->>>>>>> 63059045ddabf5bc9a53c55ce19a69fc8eb193dd
+
     type Workout {
         exercise: String
         weight:Int
@@ -50,7 +48,7 @@ const typeDefs = gql`
     }
 
     type Mutation{
-        loginUser(email:String,password:String!) : User
+        login(email:String,password:String!) : Auth
         registerUser(username:String!,email:String!,password:String!,age:Int, weight:Int,goal:String,frequency:Int) : User
         createWorkout(exercise:String!,weight:Int!,reps:Int!,DayOfWeek:String,user_id:ID! ) : Workout
     }

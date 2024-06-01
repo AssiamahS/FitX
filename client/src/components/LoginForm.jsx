@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER   } from '../graphql/mutations';
+import { LOGIN_USER } from '../graphql/mutations';
 
-import {useStore} from '../store';
+// import { useStore } from '../store';
 
 const LoginForm = () => {
   const navigate = useNavigate()
-  const {setState} = useStore()
+  // const { setState } = useStore()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, { data, loading, error }] = useMutation(LOGIN_USER, {
@@ -20,11 +20,11 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const { data } = await login();
-      
-      setState(oldState => ({
-        ...oldState,
-        user: data.authenticate
-      }))
+
+      // setState(oldState => ({
+      //   ...oldState,
+      //   user: data.authenticate
+      // }))
 
       navigate('/workouts')
       // Redirect or perform other actions

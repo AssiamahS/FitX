@@ -6,7 +6,7 @@ import Landing from './pages/Landing';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
-// import Profile from './pages/Profile';
+import WorkoutPage from './pages/WorkoutsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,8 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register />
       }, {
+        path: '/workouts',
+        elements: <WorkoutPage />
       //   path: '/profiles/:username',
       //   element: <Profile />
       // }, {

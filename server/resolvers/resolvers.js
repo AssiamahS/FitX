@@ -41,7 +41,7 @@ const resolvers = {
     },
     Mutation: {
 
-        async loginUser(_, args, context) {
+        async login(_, args, context) {
             console.log(args)
             // bcrypt.compareSync(password, this.password)
             const user = await User.findOne({
@@ -62,10 +62,10 @@ const resolvers = {
                 httpOnly: true
             })
 
-            return user
+            return { user, token }
         },
 
-        async registerUser(_, args, context) {
+        async createUser(_, args, context) {
             try {
                 const user = await User.create(args)
 
@@ -75,7 +75,9 @@ const resolvers = {
                     httpOnly: true
                 })
 
-                return user
+                console.log(user)
+
+                return {user, token}
             } catch (error) {
                 throw error
             }

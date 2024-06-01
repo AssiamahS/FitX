@@ -14,9 +14,10 @@ import BadgesPage from './pages/Badges';
 import LoginForm from '../src/components/LoginForm';
 // import SignupForm from '../src/components/SignupForm';
 import WorkoutForm from '../src/components/WorkoutForm';
-import WorkoutList from '../src/components/WorkoutList';
+// import WorkoutList from '../src/components/WorkoutList';
 import Landing from './pages/Landing';
-import Register from './pages/Register'
+import Register from './pages/Register';
+import WorkoutPage from './pages/WorkoutsPage.jsx';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -50,7 +51,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/register" element={<Register />} />
           <Route path="/workout-form" element={<WorkoutForm />} />
-          <Route path="/workouts" element={<WorkoutList />} />
+          <Route path="/workouts" element={<WorkoutPage />} />
           <Route path="/badges" element={<BadgesPage />} />
         </Routes>
       </ApolloProvider>
