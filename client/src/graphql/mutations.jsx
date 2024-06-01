@@ -1,16 +1,16 @@
 import { gql } from '@apollo/client';
 
-export const REGISTER_USER = gql `
-  mutation register(
+export const REGISTER_USER = gql`
+  mutation createUser(
     $username: String!
     $email: String!
     $password: String!
     $age: Int
-    $weight: Float
+    $weight: Int
     $goal: String
     $frequency: Int
   ) {
-    register(
+    createUser(
       username: $username
       email: $email
       password: $password
@@ -18,16 +18,15 @@ export const REGISTER_USER = gql `
       weight: $weight
       goal: $goal
       frequency: $frequency
-    ) {
+    ) { 
       token
       user {
         _id
-        email
         username
       }
     }
   }`
-;
+  ;
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
@@ -40,7 +39,7 @@ export const LOGIN_USER = gql`
       }
     }
   }`
-;
+  ;
 
 export const ADD_WORKOUT = gql`
   mutation addWorkout($exercise: String!, $weight: Float!, $reps: Int!) {
@@ -52,4 +51,4 @@ export const ADD_WORKOUT = gql`
       date
     }
   }`
-;
+  ;

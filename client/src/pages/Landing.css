@@ -1,0 +1,124 @@
+/* Styles for Landing Page */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+}
+
+.logo {
+    font-size: 1.5em;
+    padding: 0.8px 2px;
+    margin: 2px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 1em;
+}
+
+nav ul li a, .dropbtn {
+    color: white;
+    text-decoration: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.header {
+    text-align: left;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5em;
+    text-shadow: 2px 2px 5px black;
+}
+
+.content h1 {
+    font-size: 3em;
+    margin: 0.5em 0;
+    text-shadow: 2px 2px 5px black;
+}
+
+.content p {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+    text-shadow: 2px 2px 5px black;
+}
+
+.button {
+    padding: 0.5em 1em;
+    margin: 0.5em;
+    border: none;
+    background: #007BFF;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 0.3em;
+    text-shadow: 2px 2px 5px black;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.footer a {
+    color: white;
+    margin: 0 0.5em;
+    text-decoration: none;
+    text-shadow: 2px 2px 5px black;
+}
+
+.footer img {
+    vertical-align: middle;
+}
+
+.hero-image {
+    height: auto;
+    width: 100%;
+}
