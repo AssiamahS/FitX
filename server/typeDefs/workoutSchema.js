@@ -1,4 +1,5 @@
-const { ApolloServer, gql } = require('apollo-server-express');
+const gql = String.raw;
+
 const typeDefs = gql`
     type Workout {
         WorkoutName: String

@@ -8,29 +8,32 @@ const { model, Schema } = require('mongoose')
 // })
 
 const WorkoutSchema = new Schema({
-    // user: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'User',
-    //   required: true,
-    // },
-    exercise: {
-      type: String,
-      required: true,
-    },
-    weight: {
-      type: Number,
-      required: true,
-    },
-    reps: {
-      type: Number,
-      required: true,
-    },
-    DayOfWeek: {
-      type: String,//M,T,W,Th,F,S,Su
+  // user: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'User',
+  //   required: true,
+  // },
+  exercise: {
+    type: String,
+    required: true,
+  },
+  weight: {
+    type: Number,
+    required: true,
+  },
+  reps: {
+    type: Number,
+    required: true,
+  },
+  DayOfWeek: {
+    type: String,//M,T,W,Th,F,S,Su
     //   default: Date.now,
-    },
- 
-  });
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }
+});
 
 const Workout = model('Workout', WorkoutSchema)
 module.exports = Workout
