@@ -1,39 +1,27 @@
-import { useQuery, gql } from '@apollo/client';
-// import { PostForm } from './pages/PostForm';
-// import { GET_POST } from './graphql/queries'
-import { Route, Routes ,NavLink} from 'react-router-dom';
-// import { SinglePost } from './pages/SinglePost';
-// import Landing  from './pages/Landing';
 import React from 'react';
-// import { BrowserRouter as Router } from 'react-router-dom';
-import LoginForm from '../src/components/LoginForm';
-import SignupForm from '../src/components/SignupForm';
-import WorkoutForm from '../src/components/WorkoutForm';
-import WorkoutList from '../src/components/WorkoutList';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Header from './components/Header';
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import More from './components/More';
+import Footer from './components/Footer';
 
-
-
-function App() {
-  // const { loading, error, data } = useQuery(GET_POST)
-  // if (data) {
-  //   console.log(data)
-  // }
+const App = () => {
   return (
-    <>
-      <h1>Main Base</h1>
-
-    {/* <Landing/> */}
-      {/* <PostForm /> */}
-    
+    <Router>
+      <Header />
       <Routes>
-        <Route path="/login" element={<LoginForm/>} />
-        <Route path="/signup" element={<SignupForm/>} />
-        <Route path="/workout-form" element={<WorkoutForm/>} />
-        <Route path="/workouts" element={<WorkoutList/>} />
+        <Route path="/" element={<><NavBar /><Home /></>} />
+        <Route path="/about" element={<><NavBar /><About /></>} />
+        <Route path="/contact" element={<><NavBar /><Contact /></>} />
+        <Route path="/more" element={<><NavBar /><More /></>} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-  
-    </>
-  )
-}
+      <Footer />
+    </Router>
+  );
+};
 
-export default App
+export default App;

@@ -1,29 +1,13 @@
-// import { useQuery } from '@apollo/client';
-// import { GET_POST } from '../graphql/queries'
-// import { NavLink } from 'react-router-dom';
+import React from 'react';
 
+const Landing = () => {
+    return (
+        <div className="landing-container">
+            <h1>Welcome to FitX</h1>
+            <p>Your ultimate fitness companion</p>
+            {/* Add more content as needed */}
+        </div>
+    );
+};
 
-
-
-// export default function Landing() {
-
-//     const { loading, error, data } = useQuery(GET_POST)
-
-//     return (<>
-
-
-//         {loading && <p>Loading</p>}
-//         {data && data.getPosts.map(post => (
-//             <div key={post._id}>
-//                 <h2>
-//                     {post.title}
-//                 </h2>
-//                 <p>{post.body}</p>
-//                 <NavLink to={`/post/${post._id}`}>View Post</NavLink>
-//             </div>
-//         ))}
-//     </>
-//     )
-// }
-
-// //  default Landing
+export default Landing;

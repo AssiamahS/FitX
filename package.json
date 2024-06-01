@@ -17,6 +17,11 @@
   "dependencies": {
     "@apollo/client": "^3.10.4",
     "concurrently": "^8.2.2",
-    "graphql": "^16.8.1"
+    "graphql": "^16.8.1",
+    "react-router-dom": "^6.23.1",
+    "vite": "^5.2.12"
+  },
+  "devDependencies": {
+    "sass": "^1.77.4"
   }
 }

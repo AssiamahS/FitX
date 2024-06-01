@@ -40,3 +40,16 @@
 
 //     )
 // }
+
+
+
+
+import React from 'react';
+
+const PostForm = () => (
+  <div>
+    <h1>Create a Post</h1>
+  </div>
+);
+
+export default PostForm;
