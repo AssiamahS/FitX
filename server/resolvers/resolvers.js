@@ -46,7 +46,7 @@ const resolvers = {
                 httpOnly: true
             })
 
-            return { user, token }
+            return user
         },
 
         async registerUser(_, args, context) {
