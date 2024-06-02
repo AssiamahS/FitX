@@ -45,7 +45,6 @@ function App() {
   return (
     <>
       <ApolloProvider client={client}>
-        <h1>Main Base</h1>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<LoginForm />} />

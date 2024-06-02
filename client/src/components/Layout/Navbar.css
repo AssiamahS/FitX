@@ -106,9 +106,29 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .landing-content {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 91vh; /* Ensure the landing content covers the entire viewport */
+}
+
+/* Transition Effects */
+.transition-image-enter {
+    opacity: 0;
+}
+
+.transition-image-enter-active {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+.transition-image-exit {
+    opacity: 1;
+}
+
+.transition-image-exit-active {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
