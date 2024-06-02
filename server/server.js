@@ -12,11 +12,9 @@ const typeDefs = require('./typeDefs/schema')
 const authMiddleware = require('./utils/auth')
 // Provide resolver functions for your schema fields
 
+const dbConnection = require('./config/db')
+
 const app = express();
-
-
-const mongoose = require('mongoose')
-mongoose.connect('mongodb://127.0.0.1:27017/FitX')
 
 
 async function startServer() {
@@ -34,9 +32,12 @@ async function startServer() {
         })
     );
 
-    app.listen(PORT, () =>
-        console.log(`🚀 Server ready at http://localhost:3333${server.graphqlPath}`)
-    );
+    // Added the mongoose connection check to ensure the database connection has been established
+    dbConnection.once('open', () => {
+        app.listen(PORT, () =>
+            console.log(`🚀 Server ready at http://localhost:3333${server.graphqlPath}`)
+        );
+    })
 
 }
 startServer()

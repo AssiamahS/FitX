@@ -1,22 +1,27 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Register.css';
+// You don't need to import React when using the newest version of ReactJS
+import { NavLink, useNavigate } from 'react-router-dom';
+import { GraphQLError } from 'graphql';
+
+import './AuthForm.css';
 import { useState } from 'react';
-// import { Link } from 'react-router-dom';
 
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../graphql/mutations';
-import Auth from '../utils/auth';
 
+import { useStore } from '../store';
 
 const Register = () => {
-
+    // The navigate object allows us to trigger routes
+    const navigate = useNavigate()
+    // Pull the setState setter function in from our global state in the store.jsx file
+    // Head to that file to see how it's set up
+    const { setState } = useStore()
     const [formState, setFormState] = useState({
         username: '',
         email: '',
         password: '',
     });
-    const [createUser, { error, data }] = useMutation(REGISTER_USER);
+    const [registerUser, { error }] = useMutation(REGISTER_USER);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -29,44 +34,35 @@ const Register = () => {
 
     const handleFormSubmit = async (event) => {
         event.preventDefault();
-        console.log(formState);
 
         try {
-            const { data } = await createUser({
+            const { data } = await registerUser({
                 variables: { ...formState },
             });
 
-            // console.log(data)
+            console.log(data)
 
-            Auth.login(data.createUser.token);
+            setState((oldState) => ({
+                ...oldState,
+                user: data.registerUser
+            }))
+
+            // Navigate them over to the Landing page after the form submits
+            navigate('/')
         } catch (e) {
-            console.error(e);
+            // Use the GraphQL error to allow our auth error in the html to trigger
+            new GraphQLError(e)
         }
     };
 
     return (
         <div className="container">
-            <nav>
-                <div className="logo">FitX</div>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li className="dropdown">
-                        <span className="dropbtn">More</span>
-                        <div className="dropdown-content">
-                            <Link to="/live">Live Coming Soon</Link>
-                            <Link to="/sponsors">Sponsors</Link>
-                            <Link to="/events">Events</Link>
-                        </div>
-                    </li>
-                    <li><Link to="/contact">Contact</Link></li>
-                    <li><Link to="/login" className="login">Login</Link></li>
-                </ul>
-            </nav>
+
             <div className="content">
                 <div className="register-box">
                     <h2>Register</h2>
                     <p>Please fill in the details to create an account.</p>
+                    {error && <p className="auth-error">{error.message}</p>}
                     <form onSubmit={handleFormSubmit}>
                         <input type="text"
                             placeholder="Username"
@@ -84,8 +80,11 @@ const Register = () => {
                             placeholder="Password"
                             required value={formState.password}
                             onChange={handleChange}
+                            autoComplete="on"
                             name="password" />
                         <button type="submit">Register</button>
+
+                        <NavLink className="auth-link" to="/login">Click Here To Log In</NavLink>
                     </form>
                 </div>
             </div>

@@ -1,17 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import BrowserRouter and Routes along with Route
-// import './App.css';
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-// import { Outlet } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom'; // Import BrowserRouter and Routes along with Route
+
+import Header from './components/Header.jsx';
 
 // Import your components here
 import BadgesPage from './pages/Badges';
-import LoginForm from '../src/components/LoginForm';
+import Login from '../src/pages/Login';
 // import SignupForm from '../src/components/SignupForm';
 import WorkoutForm from '../src/components/WorkoutForm';
 // import WorkoutList from '../src/components/WorkoutList';
@@ -19,42 +12,39 @@ import Landing from './pages/Landing';
 import Register from './pages/Register';
 import WorkoutPage from './pages/WorkoutsPage.jsx';
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      // authorization: token ? Bearer ${token} : '',
-    },
-  };
-});
-
-const client = new ApolloClient({
-  // Set up our client to execute the authLink middleware prior to making the request to our GraphQL API
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-});
+import ProtectRoute from './components/ProtectRoute.jsx';
 
 function App() {
   return (
     <>
-      <ApolloProvider client={client}>
-        <h1>Main Base</h1>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/workout-form" element={<WorkoutForm />} />
-          <Route path="/workouts" element={<WorkoutPage />} />
-          <Route path="/badges" element={<BadgesPage />} />
-        </Routes>
-      </ApolloProvider>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={(
+          <ProtectRoute loggedInUserView={false}>
+            <Login />
+          </ProtectRoute>
+        )} />
+        {/* We use the ProtectRoute component to block users from viewing the register or login pages */}
+        <Route path="/register" element={(
+          <ProtectRoute loggedInUserView={false}>
+            <Register />
+          </ProtectRoute>
+        )} />
+        {/* We use the ProtectRoute component to block guests from viewing user pages */}
+        <Route path="/workout-form" element={(
+          <ProtectRoute loggedInUserView={true}>
+            <WorkoutForm />
+          </ProtectRoute>
+        )} />
+        <Route path="/workouts" element={(
+          <ProtectRoute loggedInUserView={true}>
+            <WorkoutPage />
+          </ProtectRoute>
+        )} />
+        <Route path="/badges" element={<BadgesPage />} />
+      </Routes>
     </>
   );
 }

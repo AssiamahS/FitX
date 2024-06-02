@@ -6,7 +6,7 @@ import { AUTHENTICATE } from '../graphql/queries'
 const Context = createContext()
 
 export function StoreProvider(props) {
-  const { data } = useQuery(AUTHENTICATE)
+  const { data, loading } = useQuery(AUTHENTICATE)
 
   const initialState = {
     loading: true,
@@ -15,17 +15,24 @@ export function StoreProvider(props) {
 
   const [state, setState] = useState(initialState)
 
+  // This useEffect will trigger once when the page first loades and then again when the useQuery above comes back
   useEffect(() => {
     setState({
       ...state,
-      loading: false,
+      // We set this loading property to the loading value from the query from the authenticate resolver
+      loading,
       user: data?.authenticate
     })
   }, [data])
 
   return (
     <Context.Provider value={{ state, setState }}>
-      {props.children}
+      {/* We hide the entire app output until the user query comes back */}
+      {loading ? (
+        <div className="loading-overlay">
+          <h1>Loading...</h1>
+        </div>
+      ) : props.children}
     </Context.Provider>
   )
 }
