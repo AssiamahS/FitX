@@ -9,7 +9,7 @@ function ProtectRoute(props) {
   return (
     // The blockUserFromViewing prop is used to determine the component we return (<Navigate /> or the child component)
     props.loggedInUserView ?
-      // Block guests from view the workout pages
+      // Block guests from viewing the workout pages
       location.pathname.match(/workouts/gi) && !state.user ? <Navigate to="/login" /> : props.children
       :
       // Block users from viewing the authentication pages
