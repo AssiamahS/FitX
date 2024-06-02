@@ -45,7 +45,7 @@ const LogIn = () => {
             }))
 
             // Navigate them over to the Landing page after the form submits
-            navigate('/')
+            navigate('/workouts')
         } catch (e) {
             new GraphQLError(e)
         }
