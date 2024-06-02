@@ -1,0 +1,28 @@
+/* WorkoutList.css */
+
+.workout-list-container {
+    padding: 20px;
+  }
+  
+  .workout-list-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .workout-list-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .workout-list-container li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: darkgrey;
+  }
+  
+  .workout-list-container li:hover {
+    background-color: darkgrey;
+  }
+  

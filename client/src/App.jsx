@@ -11,8 +11,9 @@ import WorkoutForm from '../src/components/WorkoutForm';
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 import WorkoutPage from './pages/WorkoutsPage.jsx';
-
 import ProtectRoute from './components/ProtectRoute.jsx';
+import WorkoutList from './components/WorkoutList.jsx'
+import Badges from './pages/Badges.jsx'
 
 function App() {
   return (
@@ -43,7 +44,12 @@ function App() {
             <WorkoutPage />
           </ProtectRoute>
         )} />
-        <Route path="/badges" element={<BadgesPage />} />
+          <Route path="/workout-list" element={(
+          <ProtectRoute loggedInUserView={true}>
+            <WorkoutList />
+          </ProtectRoute>
+        )} />
+        <Route path="/badges" element={<Badges />} />
       </Routes>
     </>
   );
