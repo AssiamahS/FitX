@@ -12,7 +12,7 @@ module.exports = {
 
   authMiddleware: function ({ req, res }) {
     // Log to ensure the token is being retrieved correctly
-    console.log('Incoming request cookies:', req.cookies);
+    //console.log('Incoming request cookies:', req.cookies);
 
     // Retrieve token from cookies
     let token = req.cookies?.token;
@@ -27,7 +27,7 @@ module.exports = {
       const { user_id } = jwt.verify(token, process.env.JWT_SECRET, { maxAge: expiration });
       req.user_id = user_id;
 
-      console.log('Token verified successfully:', user_id);
+      //console.log('Token verified successfully:', user_id);
       return { req, res };
     } catch (err) {
       console.log('verify token error', err);
