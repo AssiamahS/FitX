@@ -1,5 +1,3 @@
-// WorkoutPage.jsx
-
 import React from 'react';
 import './WorkoutPage.css'; // Importing CSS file for styling
 

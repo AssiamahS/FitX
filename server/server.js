@@ -30,7 +30,7 @@ async function startServer() {
         express.json(),
         cookieParser(),
         expressMiddleware(server, {
-            context: authMiddleware
+            context: authMiddleware.authMiddleware
         })
     );
 
