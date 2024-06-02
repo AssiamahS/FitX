@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const REGISTER_USER = gql`
-  mutation createUser(
+  mutation registerUser(
     $username: String!
     $email: String!
     $password: String!
@@ -10,7 +10,7 @@ export const REGISTER_USER = gql`
     $goal: String
     $frequency: Int
   ) {
-    createUser(
+    registerUser(
       username: $username
       email: $email
       password: $password
@@ -19,24 +19,19 @@ export const REGISTER_USER = gql`
       goal: $goal
       frequency: $frequency
     ) { 
-      token
-      user {
-        _id
-        username
-      }
+      _id
+      email
+      username
     }
   }`
   ;
 
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      user {
-        _id
-        email
-        username
-      }
+    loginUser(email: $email, password: $password) {
+      _id
+      email
+      username
     }
   }`
   ;
@@ -52,3 +47,11 @@ export const ADD_WORKOUT = gql`
     }
   }`
   ;
+
+export const LOGOUT_USER = gql`
+  mutation LogoutUser {
+    logoutUser {
+      message
+    }
+  }
+`;

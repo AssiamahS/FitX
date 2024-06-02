@@ -1,19 +1,8 @@
 /* Styles for Badges Page */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #333;
-    color: white;
-}
 
 .main-container {
     display: flex;
-    width: 80%;
+    /* width: 80%; */
     height: 80%;
     background-color: #222;
     border-radius: 10px;
@@ -21,7 +10,7 @@ body {
 }
 
 .sidebar {
-    width: 20%;
+    /* width: 20%; */
     background-color: #111;
     padding: 20px;
     display: flex;

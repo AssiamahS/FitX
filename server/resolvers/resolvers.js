@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const Workout = require('../models/Workout')
-const bcrypt = require('bcryptjs');
-const { signToken, AuthenticationError } = require('../utils/auth');
+
+const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         async authenticate(_, args, context) {
@@ -11,21 +11,6 @@ const resolvers = {
 
             const user = await User.findById(id)
 
-            return user
-        },
-
-        async getAllUsers() {
-            const users = await User.find()
-            console.log(users)
-            return users
-        },
-        async getOneUser(_, args, context) {
-            // Get to the logged in user's id
-            // context.req.user_id
-            // // Get user data
-            // const user = await User.findById(context.req.user_id)
-            console.log(args)
-            const user = await User.findById(args._id)
             return user
         },
 
@@ -41,8 +26,7 @@ const resolvers = {
     },
     Mutation: {
 
-        async login(_, args, context) {
-            console.log(args)
+        async loginUser(_, args, context) {
             // bcrypt.compareSync(password, this.password)
             const user = await User.findOne({
                 email: args.email
@@ -65,45 +49,37 @@ const resolvers = {
             return { user, token }
         },
 
-        async createUser(_, args, context) {
+        async registerUser(_, args, context) {
             try {
                 const user = await User.create(args)
 
+                // Create a JWT token and store the user's id to it
                 const token = signToken(user._id)
 
+                // Send a cookie to the browser with the JWT saved to it
                 context.res.cookie('token', token, {
                     httpOnly: true
                 })
 
-                console.log(user)
-
-                return {user, token}
+                return user
             } catch (error) {
+                // If user is already in the database, this error code will trigger
+                if (error.code === 11000) {
+                    throw new Error('That username or email is already in use.')
+                }
+
                 throw error
             }
         },
 
-        // async createUser(_, args) {
-        //     console.log(args)
-        //     const user = await User.create(args)
-        //     return user
-        // },
-        // async removeOneUser(_, args) {
-        //     console.log(args)
-        //     const user = await User.deleteOne({ _id: args._id })
-        //     return user
-        // },
-        // async updateOneUser(_, args) {
-        //     console.log(args)
-        //     const user = await User.updateOne({ _id: args._id },
-        //         {
-        //             username: args?.username,
-        //             email: args?.email,
-        //             password: args?.password
-        //         })
-        //     return user
-        // },
+        async logoutUser(_, args, context) {
+            delete context.req.user_id
+            context.res.clearCookie('token')
 
+            return {
+                message: 'User logged out successfully!'
+            }
+        },
 
         async createWorkout(_, args, context) {
             try {

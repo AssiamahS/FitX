@@ -4,42 +4,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /* height: 100vh; */
     color: white;
     text-align: center;
     background: rgba(0, 0, 0, 0.5);
 }
 
-nav {
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-}
 
-.logo {
-    font-size: 1.5em;
-    padding: 0.8px 2px;
-    margin: 2px;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin: 0 1em;
-}
-
-nav ul li a, .dropbtn {
-    color: white;
-    text-decoration: none;
-}
 
 .dropdown-content {
     display: none;
@@ -99,12 +70,14 @@ nav ul li a, .dropbtn {
 }
 
 .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    /* You don't want a fixed footer, since this will cause it to sit on top of other elements */
+    /* position: fixed; */
+    /* bottom: 0; */
+    /* width: 100%; */
     text-align: center;
     padding: 1em;
     background: rgba(0, 0, 0, 0.8);
+    margin-top: 35px;
 }
 
 .footer a {
@@ -120,5 +93,6 @@ nav ul li a, .dropbtn {
 
 .hero-image {
     height: auto;
-    width: 100%;
+    width: 175px;
+    margin: 0 auto;
 }

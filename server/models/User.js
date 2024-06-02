@@ -1,20 +1,6 @@
 const { model, Schema } = require('mongoose')
 const bcrypt = require('bcryptjs');
-// const {workoutSchema} = require ('./Workout')
-// const userSchema = new Schema({
-//     "username": String,
-//     "email": String,
-//     "password": String,
-//     "workouts":[{
-//         type:Schema.Types.ObjectId,
-//         ref:'Workout'
-//     }]
-// })
 
-// const User = model('User', userSchema)
-// module.exports = User
-
-// const {workoutSchema} = require ('./Workout')
 const userSchema = new Schema({
   username: {
     type: String,
@@ -56,9 +42,9 @@ userSchema.methods.validatePassword = function (password) {
 
 userSchema.pre('save', async function (next) {
   const user = this;
-  if (!user.isModified('password')) {
-    return next();
-  }
+
+  // Removed the password isModified logic, as I believe this was an old check that is no longer needed
+
   if (user.isNew) {
     try {
       const salt = await bcrypt.genSalt(10);
@@ -70,8 +56,9 @@ userSchema.pre('save', async function (next) {
     }
   }
 
-
+  next()
 })
 
 const User = model('User', userSchema)
+
 module.exports = User

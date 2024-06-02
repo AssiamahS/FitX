@@ -12,7 +12,7 @@ export const GET_WORKOUTS = gql`
       date
     }
   }`
-;
+  ;
 
 export const GET_USERS = gql`
 query GetAllUsers {
@@ -27,7 +27,7 @@ query GetAllUsers {
     _id
   }
 }`
-;
+  ;
 
 export const GET_USER = gql`
   query getUser($id: ID!) {
@@ -41,12 +41,13 @@ export const GET_USER = gql`
       frequency
     }
   }`
-;
+  ;
 
 export const AUTHENTICATE = gql`
   query Query {
     authenticate {
       username
+      email
     }
   }
 `
