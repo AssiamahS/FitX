@@ -22,24 +22,24 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={(
-          <ProtectRoute blockUserFromViewing={true}>
+          <ProtectRoute loggedInUserView={false}>
             <Login />
           </ProtectRoute>
         )} />
         {/* We use the ProtectRoute component to block users from viewing the register or login pages */}
         <Route path="/register" element={(
-          <ProtectRoute blockUserFromViewing={true}>
+          <ProtectRoute loggedInUserView={false}>
             <Register />
           </ProtectRoute>
         )} />
         {/* We use the ProtectRoute component to block guests from viewing user pages */}
         <Route path="/workout-form" element={(
-          <ProtectRoute blockUserFromViewing={false}>
+          <ProtectRoute loggedInUserView={true}>
             <WorkoutForm />
           </ProtectRoute>
         )} />
         <Route path="/workouts" element={(
-          <ProtectRoute blockUserFromViewing={false}>
+          <ProtectRoute loggedInUserView={true}>
             <WorkoutPage />
           </ProtectRoute>
         )} />
