@@ -10,7 +10,7 @@ const typeDefs = gql`
         weight:String
         goal:String
         frequency:Int
-        workouts:[ID]
+        workouts:[Workout]
     }
 
     type Workout {

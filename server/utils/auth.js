@@ -27,7 +27,7 @@ module.exports = {
       const { user_id } = jwt.verify(token, process.env.JWT_SECRET, { maxAge: expiration });
       req.user_id = user_id;
 
-      //console.log('Token verified successfully:', user_id);
+      // console.log('Token verified successfully:', user_id);
       return { req, res };
     } catch (err) {
       console.log('verify token error', err);
