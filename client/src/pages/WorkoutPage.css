@@ -1,7 +1,7 @@
 .main-container {
     display: flex;
-    width: 80%;
-    height: 80%;
+    /* width: 80%;
+    height: 80%; */
     background-color: #222;
     border-radius: 10px;
     overflow: hidden;
@@ -33,7 +33,7 @@
 }
 
 .content {
-    width: 80%;
+    /* width: 80%; */
     padding: 20px;
     display: flex;
     flex-direction: column;

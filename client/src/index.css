@@ -23,7 +23,7 @@ body {
     flex-direction: column;
 }
 
-.container {
+.container, .main-container {
     flex: 1;
     padding: 25px 0;
 }

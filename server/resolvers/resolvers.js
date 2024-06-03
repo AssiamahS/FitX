@@ -13,7 +13,16 @@ const resolvers = {
 
             return user
         },
-
+        async getAllUsers() {
+            const users = await User.find().populate('workouts')
+            return users
+        },
+        async getOneUser(_, args,context) {
+            console.log(context.req?.user_id)
+            const user = await User.findById(context.req?.user_id).populate('workouts')
+            console.log(user) 
+            return user
+        },
         async getAllWorkouts() {
             const workouts = await Workout.find()
             return workouts

@@ -51,3 +51,17 @@ export const AUTHENTICATE = gql`
     }
   }
 `
+
+export const GET_USER_WORKOUT = gql`
+query Query {
+  getOneUser {
+    workouts {
+      reps
+      user
+      weight
+      exercise
+      DayOfWeek
+    }
+  }
+}
+`;

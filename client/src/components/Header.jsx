@@ -26,18 +26,19 @@ function Header() {
       <div className="logo">FitX</div>
       <ul>
         <li><NavLink to="/">Home</NavLink></li>
-        <li><NavLink to="/about">About</NavLink></li>
+        {/* <li><NavLink to="/about">About</NavLink></li> */}
         <li className="dropdown">
-          <span className="dropbtn">More</span>
-          <div className="dropdown-content">
+          {/* <span className="dropbtn">More</span> */}
+          {/* <div className="dropdown-content">
             <NavLink to="/live">Live Coming Soon</NavLink>
             <NavLink to="/sponsors">Sponsors</NavLink>
             <NavLink to="/events">Events</NavLink>
-          </div>
+          </div> */}
         </li>
-        <li><NavLink to="/contact">Contact</NavLink></li>
+        
         {state.user ? (
           <>
+          <li><NavLink to="/workouts">Current Workouts</NavLink></li>
             <li>
               <button onClick={logoutUser}>Log Out</button>
             </li>
