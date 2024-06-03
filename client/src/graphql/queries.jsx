@@ -53,8 +53,8 @@ export const AUTHENTICATE = gql`
 `
 
 export const GET_USER_WORKOUT = gql`
-query Query($id: ID) {
-  getOneUser(_id: $id) {
+query Query {
+  getOneUser {
     workouts {
       reps
       user

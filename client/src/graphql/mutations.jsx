@@ -36,17 +36,29 @@ export const LOGIN_USER = gql`
   }`
   ;
 
+// export const ADD_WORKOUT = gql`
+//   mutation addWorkout($exercise: String!, $weight: Float!, $reps: Int!) {
+//     addWorkout(exercise: $exercise, weight: $weight, reps: $reps) {
+//       _id
+//       exercise
+//       weight
+//       reps
+//       date
+//     }
+//   }`
+//   ;
 export const ADD_WORKOUT = gql`
-  mutation addWorkout($exercise: String!, $weight: Float!, $reps: Int!) {
-    addWorkout(exercise: $exercise, weight: $weight, reps: $reps) {
-      _id
-      exercise
-      weight
-      reps
-      date
-    }
-  }`
-  ;
+mutation CreateWorkout($exercise: String!, $weight: Int!, $reps: Int!,  $dayOfWeek: String) {
+  createWorkout(exercise: $exercise, weight: $weight, reps: $reps,  DayOfWeek: $dayOfWeek) {
+    DayOfWeek
+    exercise
+    reps
+    user
+    weight
+  }
+}
+`
+
 
 export const LOGOUT_USER = gql`
   mutation LogoutUser {

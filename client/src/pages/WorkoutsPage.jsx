@@ -16,7 +16,7 @@ function WorkoutPage() {
     //     });
     //     setWorkoutArr(work)
     // }
-
+    console.log(data)
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
 
@@ -57,13 +57,12 @@ function WorkoutPage() {
                         <div className="workout-card">Plank 4 x 1min</div> */}
                     </div>
                 </div>
-                <div className="exercise-section">
+                {/* <div className="exercise-section">
                     <h2>Exercise</h2>
                     <div className="exercise-placeholder">
-                        {/* Placeholder for exercise content
-                        <p>Exercise content goes here</p> */}
+                        
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );
