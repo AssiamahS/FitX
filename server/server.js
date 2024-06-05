@@ -26,7 +26,7 @@ async function startServer() {
         requestDidStart() {
           return {
             willSendResponse({ response }) {
-              response.http.headers.set('Allow', 'GET', 'POST');
+              response.http.headers.set('Allow', 'GET, POST, OPTIONS');
             },
           };
         },
