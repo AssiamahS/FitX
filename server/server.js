@@ -58,8 +58,12 @@ async function startServer() {
         
         app.use(express.static(path.join(__dirname, '../client/dist')));
     
+        app.get('/', (req, res) => {
+            res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+          });
+
         app.get('*', (req, res) => {
-          res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+          res.sendFile(path.join(__dirname, '../client/dist/index.html')); 
         });
       }
     // Added the mongoose connection check to ensure the database connection has been established
