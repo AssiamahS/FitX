@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path')
 const cookieParser = require('cookie-parser')
 
 require('dotenv').config()
@@ -32,6 +33,13 @@ async function startServer() {
         })
     );
 
+    // For deployment on heroku or render
+    if (process.env.PORT) {
+        app.use(express.static('../client/dist'))
+        app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+        })
+    }
     // Added the mongoose connection check to ensure the database connection has been established
     dbConnection.once('open', () => {
         app.listen(PORT, () =>
