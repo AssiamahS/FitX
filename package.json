@@ -9,7 +9,10 @@
     "install:server": "cd ./server && npm i",
     "install:client": "cd ./client && npm i",
     "install": " npm run install:server && npm run install:client ",
-    "start": "cd ./server && npm start"
+    "start": "cd ./server && npm start",
+    "save": "git add -A && git commit -m \"ready for deploy\" --allow-empty",
+    "push": "git push heroku HEAD:main",
+    "deploy": "npm run client:build && npm run save && npm run push"
   },
   "keywords": [],
   "author": "",
