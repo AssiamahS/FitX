@@ -34,7 +34,7 @@ async function startServer() {
 
       const server = new ApolloServer({
         typeDefs, resolvers,
-        plugins:[allowHeaderPlugin]
+        // plugins:[allowHeaderPlugin]
     });
 
     await server.start();
@@ -46,8 +46,13 @@ async function startServer() {
         expressMiddleware(server, {
             context: authMiddleware.authMiddleware
         })
+        
     );
-
+    app.use((req, res, next) => {
+        res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+        next();
+      });
     // Added the mongoose connection check to ensure the database connection has been established
     dbConnection.once('open', () => {
         app.listen(PORT, () =>
