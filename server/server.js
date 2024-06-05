@@ -19,7 +19,12 @@ const app = express();
 
 async function startServer() {
 
-    const server = new ApolloServer({ typeDefs, resolvers });
+    const server = new ApolloServer({
+        typeDefs, resolvers,
+        cors: {
+            origin: '*', // Update with your allowed origins
+        },
+    });
 
     await server.start();
 
