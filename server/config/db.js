@@ -4,7 +4,8 @@ const mongoose = require('mongoose')
 //remember to change this back to it truthy 
 if (process.env.PORT) {
     const mongoUri = process.env.MONGODB_URI;
-    mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+    const unsafeConnectionString ="mongodb+srv://dellman000:RphllD6ilH01hQuc@cluster0.meeg9ic.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    mongoose.connect(unsafeConnectionString, { useNewUrlParser: true, useUnifiedTopology: true })
         .then(() => console.log('MongoDB connected...'))
         .catch(err => console.log('MongoDB connection error:', err));
 } else {
