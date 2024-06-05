@@ -3,7 +3,7 @@ const cookieParser = require('cookie-parser')
 
 require('dotenv').config()
 
-const { ApolloServer } = require('@apollo/server')
+const { ApolloServer,ApolloServerPlugin  } = require('@apollo/server')
 const { expressMiddleware } = require('@apollo/server/express4')
 const PORT = process.env.PORT || 3333
 const resolvers = require('./resolvers/resolvers')
@@ -12,6 +12,8 @@ const typeDefs = require('./typeDefs/schema')
 const authMiddleware = require('./utils/auth')
 // Provide resolver functions for your schema fields
 
+const http = require('http')
+
 const dbConnection = require('./config/db')
 
 const app = express();
@@ -19,11 +21,20 @@ const app = express();
 
 async function startServer() {
 
-    const server = new ApolloServer({
-        typeDefs, resolvers,
-        cors: {
-            origin: '*', // Update with your allowed origins
+ 
+    const allowHeaderPlugin = {
+        requestDidStart() {
+          return {
+            willSendResponse({ response }) {
+              response.http.headers.set('Allow', 'GET', 'POST');
+            },
+          };
         },
+      };
+
+      const server = new ApolloServer({
+        typeDefs, resolvers,
+        plugins:[allowHeaderPlugin]
     });
 
     await server.start();
