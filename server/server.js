@@ -11,7 +11,7 @@ const resolvers = require('./resolvers/resolvers')
 const typeDefs = require('./typeDefs/schema')
 const authMiddleware = require('./utils/auth')
 // Provide resolver functions for your schema fields
-
+const path = require('path');
 const http = require('http')
 
 const dbConnection = require('./config/db')
@@ -53,6 +53,15 @@ async function startServer() {
         res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
         next();
       });
+
+      if (!process.env.PORT) {
+        
+        app.use(express.static(path.join(__dirname, '../client/dist')));
+    
+        app.get('*', (req, res) => {
+          res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+        });
+      }
     // Added the mongoose connection check to ensure the database connection has been established
     dbConnection.once('open', () => {
         app.listen(PORT, () =>
