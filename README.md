@@ -46,6 +46,10 @@ FitX is a dynamic fitness tracking application that helps users monitor their wo
 ## Usage
 Register for an account or log in if you already have one. From the home page, the user is able to see a list of workout options and add the workout and the date of choice.
 
+Deployed Site
+[https://fitx-fitness-944aae60b44e.herokuapp.com/]
+
+
 
 ## Credits
 - Juan Vargas
